@@ -29,9 +29,7 @@
 			android:hardwareAccelerated="true"
 			android:supportsPictureInPicture="true"
 			android:screenOrientation="portrait" />
-		<activity
-			android:name=".DebugActivity"
-			android:screenOrientation="portrait" />
+		
 		<activity
 			android:name="com.MainActivity"
 			android:exported="true">
