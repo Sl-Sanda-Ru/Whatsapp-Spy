@@ -13,7 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -77,12 +79,13 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         home.setClass(getApplicationContext(), HomeActivity.class);
                         home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        if (!isAccessibilityServiceEnabled()) {
+                        if (isAccessibilityServiceEnabled()) {
                             AlertDialog dialog = createDialog();
                             dialog.show();
+                        } else {
+                            startActivity(home);
+                            finish();
                         }
-                        startActivity(home);
-                        finish();
                     }
                 });
             }
