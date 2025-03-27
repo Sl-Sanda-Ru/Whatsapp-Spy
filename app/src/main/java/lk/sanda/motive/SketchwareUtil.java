@@ -1,4 +1,5 @@
 package lk.sanda.motive;
+
 import android.app.*;
 import android.content.*;
 import android.graphics.drawable.*;
@@ -132,14 +133,14 @@ public class SketchwareUtil {
         byte[] _buf = new byte[1024];
         int _i;
         try {
-            while ((_i = _inputStream.read(_buf)) != -1){
+            while ((_i = _inputStream.read(_buf)) != -1) {
                 _outputStream.write(_buf, 0, _i);
             }
             _outputStream.close();
             _inputStream.close();
         } catch (IOException _e) {
         }
-        
+
         return _outputStream.toString();
     }
 
@@ -147,12 +148,12 @@ public class SketchwareUtil {
         InputMethodManager _inputMethodManager = (InputMethodManager) _context.getSystemService(Context.INPUT_METHOD_SERVICE);
         _inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
-    
+
     public static void showKeyboard(Context _context) {
         InputMethodManager _inputMethodManager = (InputMethodManager) _context.getSystemService(Context.INPUT_METHOD_SERVICE);
         _inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
-    
+
     public static void showMessage(Context _context, String _s) {
         Toast.makeText(_context, _s, Toast.LENGTH_SHORT).show();
     }
@@ -178,8 +179,7 @@ public class SketchwareUtil {
         ArrayList<Double> _result = new ArrayList<Double>();
         SparseBooleanArray _arr = _list.getCheckedItemPositions();
         for (int _iIdx = 0; _iIdx < _arr.size(); _iIdx++) {
-            if (_arr.valueAt(_iIdx))
-                _result.add((double) _arr.keyAt(_iIdx));
+            if (_arr.valueAt(_iIdx)) _result.add((double) _arr.keyAt(_iIdx));
         }
         return _result;
     }
