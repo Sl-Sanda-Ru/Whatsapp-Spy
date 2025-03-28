@@ -18,6 +18,11 @@ android {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        //If you want to continue even if errors found use following line
+        abortOnError false
+    }
 
     buildTypes {
         release {
