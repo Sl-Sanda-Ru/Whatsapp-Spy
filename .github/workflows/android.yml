@@ -59,28 +59,29 @@ jobs:
         run: ./gradlew assemble
 
       # Create Bundle AAB Release
-      # Noted for main module build [main_project_module]:bundleRelease
       - name: Build app bundle release (AAB) - ${{ env.main_project_module }} module
         run: ./gradlew ${{ env.main_project_module }}:bundleRelease
 
-      # Upload Artifact Build
-      # Noted For Output [main_project_module]/build/outputs/apk/debug/
+      # Upload APK Debug
       - name: Upload APK Debug - ${{ env.repository_name }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - APK(s) debug generated
-          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+          name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - APK Debug
+          path: ${{ env.main_project_module }}/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
 
-      # Noted For Output [main_project_module]/build/outputs/apk/release/
+      # Upload APK Release
       - name: Upload APK Release - ${{ env.repository_name }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - APK(s) release generated
-          path: ${{ env.main_project_module }}/build/outputs/apk/release/
+          name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - APK Release
+          path: ${{ env.main_project_module }}/build/outputs/apk/release/*.apk
+          if-no-files-found: error
 
-      # Noted For Output [main_project_module]/build/outputs/bundle/release/
+      # Upload AAB (App Bundle) Release
       - name: Upload AAB (App Bundle) Release - ${{ env.repository_name }}
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - App bundle(s) AAB release generated
-          path: ${{ env.main_project_module }}/build/outputs/bundle/release/
+          name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - AAB Release
+          path: ${{ env.main_project_module }}/build/outputs/bundle/release/*.aab
+          if-no-files-found: error
